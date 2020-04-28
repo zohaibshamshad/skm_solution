@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Employees Listing
+{% endblock title %}
+
+{% block content %}
+
+{% if employees %}
+    <section id="dashboard" class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Welcome<span class="text-success"> {{ user.first_name }}</span></h2>
+                    <p>Here are all the Employee listings</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">E-Code</th>
+                                <th scope="col">Phone#</th>
+                                <th scope="col">Designation</th>
+                                <th scope="col">Join Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for employee in employees %}
+                                <tr>
+                                    <td>{{ employee.id }}</td>
+                                    <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                                    <td>{{ employee.e_code }}</td>
+                                    <td>{{ employee.phone_main }}</td>
+                                    <td>{{ employee.designation }}</td>
+                                    <td>{{ employee.join_date }}</td>
+                                    <td>
+                                    <a class="btn btn-light" href="{% url 'employee' employee.id %}">View Employee Listing</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% else %}
+    <h1>Currently no employee</h1>  
+{% endif %}  
+{% endblock %}
