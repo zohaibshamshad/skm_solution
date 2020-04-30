@@ -20,25 +20,26 @@
             {% endif %}
           >
             <a class="nav-link" href="{% url 'home' %}">Home</a>
-          <li
-            {% if 'events' in request.path and 'events/tasks' not in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'events' %}">Events</a>
-          </li>
-          <li
-            {% if 'tasks' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'tasks' %}">All Tasks</a>
           </li>
           {% if user.is_authenticated %}
+            <li
+              {% if 'events' in request.path and 'events/tasks' not in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {% endif %}
+            >
+              <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li
+              {% if 'tasks' in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {% endif %}
+            >
+              <a class="nav-link" href="{% url 'tasks' %}">All Tasks</a>
+            </li>
             <li
               {% if 'employees' in request.path %}
                 class="nav-item active mr-3"

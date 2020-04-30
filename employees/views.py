@@ -12,7 +12,7 @@ def employee(request, employee_id):
     return render(request, 'employees/employee.html', context)
 
 def employees(request):
-    employees = Employee.objects.order_by('join_date')
+    employees = Employee.objects.order_by('hire_date')
     context = {
         'employees' : employees
     }

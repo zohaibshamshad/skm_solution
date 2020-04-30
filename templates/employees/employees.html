@@ -21,7 +21,7 @@
                                 <th scope="col">E-Code</th>
                                 <th scope="col">Phone#</th>
                                 <th scope="col">Designation</th>
-                                <th scope="col">Join Date</th>
+                                <th scope="col">Hire Date</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -33,7 +33,7 @@
                                     <td>{{ employee.e_code }}</td>
                                     <td>{{ employee.phone_main }}</td>
                                     <td>{{ employee.designation }}</td>
-                                    <td>{{ employee.join_date }}</td>
+                                    <td>{{ employee.hire_date }}</td>
                                     <td>
                                     <a class="btn btn-light" href="{% url 'employee' employee.id %}">View Employee Listing</a>
                                     </td>

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load humanize %}
 
 {% block title %}
@@ -9,201 +8,61 @@
 {% block content %}
 
 {% if employee %}
-  <section id="showcase-inner" class="py-5 text-white">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <h1 class="display-4">{{ employee.first_name }} {{ employee.last_name }}</h1>
-          <p class="lead">
-            <i class="fa fa-tag"></i> {{ employee.designation }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Breadcrumb -->
-  <section id="bc" class="mt-3">
-    <div class="container">
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="breadcrumb-item">
-            <a href="{% url 'employees' %}">Employees</a>
-          </li>
-          <li class="breadcrumb-item active">{{ employee.first_name }} {{ employee.last_name }} - {{ employee.e_code }}</li>
-        </ol>
-      </nav>
-    </div>
-  </section>
-
-  <!-- Listing -->
+<!-- Listing -->
   <section id="listing" class="py-4">
     <div class="container">
-      <a href="{% url 'employees' %}" class="btn btn-light mb-4">Back To Employees</a>
       <div class="row">
+
+
         <div class="col-md-9">
-          <!-- Home Main Image -->
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <!-- <img src="{{ employee.photo_main.url }}" alt="" class="img-main img-fluid"> -->
+          
+          <div class="row mb">
+            <!-- Main image column -->
+            <div class="col-md-4">
               <a href="{{ employee.photo_main.url }}" data-lightbox="home-images">
                 <img src="{{ employee.photo_main.url }}" alt="" class="img-fluid">
               </a>
-            </div>
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-money-bill-alt"></i> Rating:
-                  <span class="float-right">
-                    {{ employee.rating }}
-                  </span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Designation:
-                  <span class="float-right"> {{ employee.designation }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Department:
-                  <span class="float-right"> {{ employee.department }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-car"></i> Working Tenure:
-                  <span class="float-right"> {{ employee.join_date | timesince }}
-                  </span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Department:
-                  <span class="float-right"> {{ employee.department }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Department:
-                  <span class="float-right"> {{ employee.department }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Department:
-                  <span class="float-right"> {{ employee.department }}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          {% if employee.photo_1 or employee.photo_2 %}
-            <!-- Thumbnails -->
-            <div class="row mb-5 thumbs">
               {% if employee.photo_1 %}
-                <div class="col-md-3">
-                  <a href="{{ employee.photo_1.url }}" data-lightbox="home-images">
-                    <img src="{{ employee.photo_1.url }}" alt="" class="img-fluid">
-                  </a>
-                </div>
+                <a href="{{ employee.photo_1.url }}" data-lightbox="home-images">
+                  <img src="" alt="" class="img-fluid">
+                </a>
               {% endif %}
               {% if employee.photo_2 %}
-                <div class="col-md-3">
-                  <a href="{{ employee.photo_2.url }}" data-lightbox="home-images">
-                    <img src="{{ employee.photo_2.url }}" alt="" class="img-fluid">
-                  </a>
-                </div>
+                <a href="{{ employee.photo_2.url }}" data-lightbox="home-images">
+                  <img src="" alt="" class="img-fluid">
+                </a>
               {% endif %}
-              <div class="col-md-6">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item text-secondary">
-                    <i class="fas fa-money-bill-alt"></i> Asking Price:
-                    <span class="float-right">Rs {{ employee.salary }}</span>
-                  </li>
-                  <li class="list-group-item text-secondary">
-                    <i class="fas fa-bed"></i> Designation:
-                    <span class="float-right"> {{ employee.designation }}</span>
-                  </li>
-                  <li class="list-group-item text-secondary">
-                    <i class="fas fa-bath"></i> Department:
-                    <span class="float-right"> {{ employee.department }}</span>
-                  </li>
-                </ul>
-              </div>
             </div>
-          {% endif %}
-          <!-- Fields -->
-          <div class="row mb-5 fields">
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-money-bill-alt"></i> Asking Price:
-                  <span class="float-right">Rs {{ employee.salary }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Designation:
-                  <span class="float-right"> {{ employee.designation }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Department:
-                  <span class="float-right"> {{ employee.department }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-car"></i> Working Tenure:
-                  <span class="float-right"> {{ employee.join_date | timesince }}
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-th-large"></i> Home Town:
-                  <span class="float-right"> {{ employee.address }}</span>
-                </li>
-                <li
-                  {% if employee.is_available %}
-                    class="list-group-item text-secondary"
-                  {% else %}
-                    class="list-group-item text-danger"
-                  {% endif %}
-                >
-                  <i class="fas fa-square"></i> Availability:
-                  <span class="float-right">
-                    {% if employee.is_available %}
-                      Available
-                    {% else %}
-                      On Leave
-                    {% endif %}
-                  </span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-calendar"></i> Listing Date:
-                  <span class="float-right">{{ employee.listing_date }}</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Added by:
-                  <span class="float-right">{{ employee.added_by | title }}
-                  </span>
-                </li>
-
-
-              </ul>
+            <!-- Employee Details column -->
+            <div class="col-md-8">
+              
             </div>
           </div>
 
+          <hr>
           <!-- Description -->
           <div class="row mb-5">
-            <div class="col-md-12">
+            <div class="col-md">
+              <h5 class="card-title"> Responsibilities</h5>
               {{ employee.jd }}
             </div>
           </div>
+
         </div>
 
-        <!-- <div class="mb-3"></div> -->
         <div class="col-md-3">
           <div class="card mb-3">
             {% if employee.photo_1 %}
-              <img class="card-img-top" src="{{ employee.photo_1.url }}" alt="Seller of the month">
+              <!-- <img class="card-img-top" src="{{ employee.photo_1.url }}" alt="Seller of the month"> -->
             {% endif %}
             <div class="card-body">
-              <h5 class="card-title"> Safety & Security Administration</h5>
+              <h5 class="card-title"> Added by</h5>
               <h6 class="text-secondary"> {{ employee.added_by.first_name | title}} {{ employee.added_by.last_name | title}}</h6>
             </div>
           </div>
           <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal"> Request Edit</button>
         </div>
+
       </div>
     </div>
   </section>
@@ -213,7 +72,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="inquiryModalLabel">Request Edit</h5>
+          <h5 class="modal-title" id="inquiryModalLabel">Edit Request by</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
@@ -221,23 +80,19 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="property_name" class="col-form-label">Property:</label>
-              <input type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
+              <label for="name" class="col-form-label">Name:</label>
+              <input type="text" name="name" class="form-control" value="{{ user.first_name }} {{ user.last_name }}" disabled>
             </div>
             <div class="form-group">
-              <label for="name" class="col-form-label">Name:</label>
-              <input type="text" name="name" class="form-control" required>
+              <label for="property_name" class="col-form-label">Username:</label>
+              <input type="text" name="listing" class="form-control" value="{{ user.username }}" disabled>
             </div>
             <div class="form-group">
               <label for="email" class="col-form-label">Email:</label>
-              <input type="email" name="email" class="form-control" required>
+              <input type="email" name="email" class="form-control" value="{{ user.email }}" disabled>
             </div>
             <div class="form-group">
-              <label for="phone" class="col-form-label">Phone:</label>
-              <input type="text" name="phone" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="message" class="col-form-label">Message:</label>
+              <label for="message" class="col-form-label">Edit details:</label>
               <textarea name="message" class="form-control"></textarea>
             </div>
             <hr>
@@ -246,6 +101,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
+
 {% endif %}
 {% endblock %}
