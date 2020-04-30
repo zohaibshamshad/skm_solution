@@ -10,7 +10,7 @@
 {% if employee %}
 <!-- Listing -->
   <section id="listing" class="py-4">
-    <div class="container">
+    <div class="container border">
       <div class="row">
 
 
@@ -19,6 +19,7 @@
           <div class="row mb">
             <!-- Main image column -->
             <div class="col-md-4">
+              <h5></h5>
               <a href="{{ employee.photo_main.url }}" data-lightbox="home-images">
                 <img src="{{ employee.photo_main.url }}" alt="" class="img-fluid">
               </a>
@@ -33,9 +34,77 @@
                 </a>
               {% endif %}
             </div>
+            
             <!-- Employee Details column -->
             <div class="col-md-8">
-              
+              <h5></h5>
+              <div class="border">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Title:
+                    <span class="float-right"> {{ employee.designation }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i>Department:
+                    <span class="float-right">{{ employee.department }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Birth Date:
+                    <span class="float-right">{{ employee.dob }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Age:
+                    <span class="float-right">{{ employee.dob | timesince}}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> CNIC:
+                    <span class="float-right">{{ employee.cnic }}
+                    </span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Total Experience:
+                    <span class="float-right"> {{ employee.experience }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i>Qualification:
+                    <span class="float-right">{{ employee.qualification }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Gross Salary:
+                    <span class="float-right">{{ employee.gross_salary }}
+                    </span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i>Scale:
+                    <span class="float-right">{{ employee.scale }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Hire Date:
+                    <span class="float-right"> {{ employee.hire_date }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i>Working Since:
+                    <span class="float-right">{{ employee.hire_date | timesince }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i>Mobile:
+                    <span class="float-right">{{ employee.phone_main }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Mobile (Other):
+                    <span class="float-right">{{ employee.phone_1 }}
+                    </span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i> Home Address:
+                    <span class="float-right"> {{ employee.address }}</span>
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    <i class=""></i>City/Country:
+                    <span class="float-right">{{ employee.city }}/{{ employee.country }}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
