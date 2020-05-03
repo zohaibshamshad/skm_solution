@@ -6,6 +6,8 @@ def index(request):
     
 def employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
+    cnic = employee.cnic
+    employee.cnic = '-'.join((cnic[:5], cnic[5:12], cnic[12]))
     context = {
         'employee' : employee,
     }

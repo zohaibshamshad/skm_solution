@@ -50,7 +50,7 @@
                   </li>
                   <li class="list-group-item text-secondary">
                     <i class=""></i> Birth Date:
-                    <span class="float-right">{{ employee.dob }}</span>
+                    <span class="float-right">{{ employee.dob | date:"M d, Y" }}</span>
                   </li>
                   <li class="list-group-item text-secondary">
                     <i class=""></i> Age:
@@ -80,7 +80,7 @@
                   </li>
                   <li class="list-group-item text-secondary">
                     <i class=""></i> Hire Date:
-                    <span class="float-right"> {{ employee.hire_date }}</span>
+                    <span class="float-right"> {{ employee.hire_date | date:"M d, Y"}}</span>
                   </li>
                   <li class="list-group-item text-secondary">
                     <i class=""></i>Working Since:
