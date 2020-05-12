@@ -1,39 +1,58 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from accounts.forms import UserForm
+from django.contrib import messages
 
 def register(request):
-    if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password1 = request.POST['password2']
+    user_form = UserForm()
 
-        if password == password1:
-            if User.objects.filter(username=username).exists():
-                # Show them error that username is taken
-                return redirect('register')
-            else:
-                if User.objects.filter(email=email).exists():
-                    #Show error messaga that already registered
-                    return redirect('register')
-                else:
-                    # Everython looks good
-                    user = User.objects.create_user(
-                        first_name=first_name,
-                        last_name=last_name,
-                        username=username,
-                        email=email,
-                        password=password
-                    )
-                    user.save()
-                    return redirect('login')
-        else:
-            return redirect('register')
-        
-    return render(request, 'accounts/register.html')
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        # if user_form_is_valid():
+        user = user_form.save()
+        messages.success(request, 'Successfully registered, Please login to continue')
+        return redirect('login')
+        # else:
+        #     messages.error(request, 'Invalid! Please try again')
+        #     return redirect('register')
+
+    context = {
+        'form' : user_form,
+    }
+    return render(request, 'accounts/register.html', context)
+
+
+
+
+
+
+
+    # if request.method == 'POST':
+        # username = request.POST['username']
+        # email = request.POST['email']
+        # password = request.POST['password']
+        # password1 = request.POST['password2']
+        # form = UserForm(data=request.POST)
+        # if password == password1:
+        #     if User.objects.filter(username=username).exists():
+        #         messages.error(request, "Username already exists")
+        #         return redirect('register')
+        #     else:
+        #         if User.objects.filter(email=email).exists():
+        #             messages.error(request, 'Email already registered')
+        #             return redirect('register')
+        #         else:
+        #             messages.success(request, 'Successfuly registered, login to continue')
+        #             form = form.save()
+        #             return redirect('login')
+        # else:
+        #     return redirect('register')
+    # form = UserForm()
+    # context = {
+    #     'form':form,
+    # }
+    # return render(request, 'accounts/register.html', context)
 
 def login_view(request):
     if request.method == 'POST':
