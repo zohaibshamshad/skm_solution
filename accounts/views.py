@@ -5,20 +5,19 @@ from accounts.forms import UserForm
 from django.contrib import messages
 
 def register(request):
-    user_form = UserForm()
-
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        # if user_form_is_valid():
-        user = user_form.save()
-        messages.success(request, 'Successfully registered, Please login to continue')
-        return redirect('login')
-        # else:
-        #     messages.error(request, 'Invalid! Please try again')
-        #     return redirect('register')
+        if user_form.is_valid():
+            user = user_form.save()
+            messages.success(request, 'Successfully registered, Please login to continue')
+            return redirect('login')
+        else:
+            messages.error(request, 'Invalid! Please try again')
+            return redirect('register')
 
+    user_form = UserForm()
     context = {
-        'form' : user_form,
+        'form' : user_form
     }
     return render(request, 'accounts/register.html', context)
 
