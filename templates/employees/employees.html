@@ -3,6 +3,7 @@
 {% block title %}
     Employees Listing
 {% endblock title %}
+{% load humanize %}
 
 {% block content %}
 
@@ -33,9 +34,9 @@
                                     <td>{{ employee.e_code }}</td>
                                     <td>{{ employee.phone_main }}</td>
                                     <td>{{ employee.designation }}</td>
-                                    <td>{{ employee.hire_date }}</td>
+                                    <td>{{ employee.hire_date | date }}</td>
                                     <td>
-                                    <a class="btn btn-light" href="{% url 'employee' employee.id %}">View Employee Listing</a>
+                                    <a class="btn btn-light" href="{{ employee.id }}">View Employee Listing</a>
                                     </td>
                                 </tr>
                             {% endfor %}
