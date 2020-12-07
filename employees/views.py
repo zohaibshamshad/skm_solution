@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from employees.models import Employee
 from django.views.generic import ListView, DetailView
+from rest_framework import viewsets
+from employees.serializers import EmployeeSerializer
 
+class EmployeeView(viewsets.ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
 
 class EmployeesListView(ListView):
     model = Employee
@@ -14,6 +19,12 @@ class EmployeesDetailView(DetailView):
     model = Employee
     context_object_name = 'employee'
     template_name = 'employees/employee.html'
+
+    def get_object(self):
+        employee = get_object_or_404(Employee, pk=self.kwargs.get('pk'))
+        cnic = employee.cnic
+        employee.cnic = '-'.join((cnic[:5], cnic[5:12], cnic[12]))
+        return employee
 
 
 def index(request):

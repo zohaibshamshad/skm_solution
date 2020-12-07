@@ -11,6 +11,7 @@ class Event(models.Model):
     event_date = models.DateTimeField()
     description = models.TextField(blank=True)
     is_repeated = models.BooleanField()
+    picture = models.ImageField(upload_to='photos')
     managed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):

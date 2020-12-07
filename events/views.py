@@ -10,7 +10,7 @@ class EventsListView(ListView):
     context_object_name = 'events'
     ordering = '-event_date'
     paginate_by = 6
-
+    
 # def events(request):
 #     events = Event.objects.order_by('-event_date')
 #     page = request.GET.get('page')
