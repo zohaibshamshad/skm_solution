@@ -11,4 +11,5 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('<slug:pk>', views.EmployeesDetailView.as_view(), name='employee'),
     path('api/', include(router.urls)),
+    # This is the testing thing for git
 ]
